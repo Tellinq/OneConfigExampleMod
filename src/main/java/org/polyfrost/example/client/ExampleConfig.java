@@ -2,7 +2,9 @@ package org.polyfrost.example.client;
 
 import org.polyfrost.example.ExampleConstants;
 import org.polyfrost.oneconfig.api.config.v1.Config;
+import org.polyfrost.oneconfig.api.config.v1.ValueFormatter;
 import org.polyfrost.oneconfig.api.config.v1.annotations.Dropdown;
+import org.polyfrost.oneconfig.api.config.v1.annotations.MasterToggle;
 import org.polyfrost.oneconfig.api.config.v1.annotations.Slider;
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
 
@@ -12,13 +14,18 @@ import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
  */
 public class ExampleConfig extends Config {
 
+    // The switch shown on the mod's card in the OneConfig menu. It's saved but doesn't appear on the config page.
+    @MasterToggle
+    public static boolean enabled = true;
+
     @Switch(title = "Example Switch")
     public static boolean exampleSwitch = false; // The default value for the boolean Switch.
 
     @Slider(
             title = "Example Slider",
             min = 0f, max = 100f, // Minimum and maximum values for the slider.
-            step = 10 // The amount of steps that the slider should have.
+            step = 10, // The amount of steps that the slider should have.
+            formatter = PercentFormatter.class // Changes how the value is displayed.
     )
     public static float exampleSlider = 50f; // The default value for the float Slider.
 
@@ -32,6 +39,14 @@ public class ExampleConfig extends Config {
 
     public ExampleConfig() {
         super(ExampleConstants.ID + ".json", ExampleConstants.NAME, Category.OTHER); // TODO: Change your category here.
+    }
+
+    // Shows the slider's value as a percentage. OneConfig creates it through its no-argument constructor.
+    public static class PercentFormatter implements ValueFormatter {
+        @Override
+        public String format(Number value) {
+            return value.intValue() + "%";
+        }
     }
 
 }

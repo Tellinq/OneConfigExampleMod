@@ -3,33 +3,21 @@
     "id": "${mod_id}",
     "version": "${mod_version}",
     "name": "${mod_name}",
-    "description": "${mod_description}",
     "authors": [
         "Your Name"
     ],
-    "environment": "*",
+    "environment": "client",
     "entrypoints": {
-        "main": [
-            {
-                "value": "org.polyfrost.example.ExampleEntrypoint"
-            }
-        ],
         "client": [
-            {
-                "value": "org.polyfrost.example.ExampleEntrypoint"
-            }
-        ],
-        "server": [
-            {
-                "value": "org.polyfrost.example.ExampleEntrypoint"
-            }
+            "org.polyfrost.example.ExampleEntrypoint"
         ]
     },
     "mixins": [
         "mixins.${mod_id}.json"
     ],
     "depends": {
-        "minecraft": "~${minor_mc_version}",
-        "fabricloader": ">=0.15.11"
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "${minecraft_version_range}",
+        "oneconfigv1": ">=1.6.0"
     }
 }

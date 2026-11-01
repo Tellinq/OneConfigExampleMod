@@ -7,7 +7,9 @@ import org.polyfrost.oneconfig.utils.v1.dsl.ScreensKt;
 
 /**
  * An example command implementing the Command api of OneConfig.
- * Registered in ExampleMod.java with `CommandManager.INSTANCE.registerCommand(new ExampleCommand());`
+ * Registered in ExampleClient.java with `CommandManager.register(new ExampleCommand());`
+ * <p>
+ * Registers `/examplemod`, which opens the config screen.
  *
  * @see Command
  * @see ExampleClient
@@ -16,7 +18,7 @@ import org.polyfrost.oneconfig.utils.v1.dsl.ScreensKt;
 public class ExampleCommand {
 
     @Handler
-    private void main() {
+    public void main() {
         ScreensKt.openUI(ExampleConfig.INSTANCE);
     }
 
