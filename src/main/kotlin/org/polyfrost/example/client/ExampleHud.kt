@@ -1,5 +1,33 @@
 package org.polyfrost.example.client
 
-// TODO: for nextdayy
-object ExampleHud {
+import net.minecraft.client.Minecraft
+import org.polyfrost.oneconfig.api.config.v1.annotations.Text
+import org.polyfrost.oneconfig.api.hud.v1.TextHud
+
+class ExampleHud : TextHud(
+    id = "example_hud.json",
+    title = "Example HUD",
+    category = Category.PLAYER,
+    prefix = "Player: "
+) {
+
+    @Text(title = "Fallback Text", description = "Shown when you aren't in a world.")
+    var fallbackText = "None"
+
+    override fun getText(): String {
+        // Stonecutter comments swap code depending on the Minecraft version being built.
+        // See https://stonecutter.kikugie.dev/ for the full syntax.
+        //? if > 1.8.9 {
+        val name = Minecraft.getInstance().player?.name?.string
+        //?} else {
+        /*val name = Minecraft.getInstance().player?.name
+        *///?}
+        return name ?: fallbackText
+    }
+
+    // Hides the HUD while the mod is switched off from its card
+    override fun shouldShow(): Boolean = ExampleConfig.enabled
+
+    override fun defaultPosition(): Pair<Float, Float> = 10f to 10f
+
 }

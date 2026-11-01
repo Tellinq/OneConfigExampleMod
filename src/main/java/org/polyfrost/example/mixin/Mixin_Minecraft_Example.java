@@ -1,4 +1,4 @@
-package org.polyfrost.example.client.mixin;
+package org.polyfrost.example.mixin;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
