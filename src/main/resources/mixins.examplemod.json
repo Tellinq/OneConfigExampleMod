@@ -1,13 +1,11 @@
 {
-  "compatibilityLevel": "${java_version}",
-  "minVersion": "0.8",
-  "package": "org.polyfrost.example.mixin",
-  "refmap": "mixins.${mod_id}.refmap.json",
-  "injectors": {
-    "maxShiftBy": 5
-  },
-  "client": [
-    "Mixin_MinecraftClient_Example"
-  ],
-  "verbose": true
+    "required": true,
+    "compatibilityLevel": "JAVA_21",
+    "package": "org.polyfrost.example.mixin",
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+        "Mixin_Minecraft_Example"
+    ]
 }
