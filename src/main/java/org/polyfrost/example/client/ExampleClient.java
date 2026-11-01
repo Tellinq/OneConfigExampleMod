@@ -1,20 +1,15 @@
 package org.polyfrost.example.client;
 
-import net.fabricmc.api.ClientModInitializer;
+import org.polyfrost.example.ExampleConstants;
 import org.polyfrost.oneconfig.api.commands.v1.CommandManager;
+import org.polyfrost.oneconfig.api.hud.v1.HudManager;
 
-public class ExampleClient implements ClientModInitializer {
+public class ExampleClient {
 
-    public static ExampleClient INSTANCE;
-
-    public ExampleClient() {
-        INSTANCE = this;
-    }
-
-    @Override
-    public void onInitializeClient() {
+    public static void initialize() {
         ExampleConfig.INSTANCE.preload();
         CommandManager.register(new ExampleCommand());
+        HudManager.register(new ExampleHud(), ExampleConstants.ID);
     }
 
 }
